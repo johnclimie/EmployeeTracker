@@ -12,29 +12,31 @@ const viewDep = require('./prompts/viewDepartments');
 const viewEmp = require('./prompts/viewEmployees');
 const viewRoles = require('./prompts/viewRoles');
 
+// Asks user what they would like to do
 function makeSelection() {
     inquirer
         .prompt([
             {
-            name: 'selection', 
-            message: 'What would you like to do?',
-            type: 'list',
-            choices: ['Add a Department', 'Add an Employee', 'Add a Role', 'Update Employee', 'View Departments', 'View Employees', 'View Roles']
+                name: 'selection', 
+                message: 'What would you like to do?',
+                type: 'list',
+                choices: ['Add a Department', 'Add an Employee', 'Add a Role', 'Update Employee', 'View Departments', 'View Employees', 'View Roles']
             }
         ])
+        // Depending on what is selected, the user is presented with new output
         .then(function(response) {
             switch (response.selection) {
                 case 'Add a Department':
-                    console.log(`Test ${addDep.getName()}`)
+                    addDep.addDep();
                     break;
                 case 'Add an Employee':
-                    console.log(`Test ${addEmp.getName()}`)
+                    addEmp.addEmp();
                     break;
                 case 'Add a Role':
-                    console.log(`Test ${addRole.getName()}`)
+                    addRole.addRole();
                     break;
                 case 'Update Employee':
-                    console.log(`Test ${updateEmp.getName()}`)
+                    updateEmp.updateEmp();
                     break;
                 case 'View Departments':
                     console.log(`Test ${viewDep.getName()}`)
@@ -46,9 +48,8 @@ function makeSelection() {
                     console.log(`Test ${viewRoles.getName()}`)
                     break;
             }
-            makeSelection();
+            // Function calls itself after each selection is made
         })
-
 };
 
 

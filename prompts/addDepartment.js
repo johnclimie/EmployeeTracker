@@ -1,7 +1,18 @@
-const getName = () => {
-    return 'add Department';
+const inquirer = require('inquirer');
 
+const addDep = () => {
+    inquirer
+        .prompt([
+            {
+                name: 'name',
+                message: 'Enter the department name',
+                type: 'input'
+            }
+        ])
+        .then(function(response) {
+            console.log('department added');
+        })
 }
 
 
-exports.getName = getName;
+exports.addDep = addDep;
