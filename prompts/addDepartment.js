@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const makeSelection = require('../index');
 
 const addDep = () => {
     inquirer
@@ -9,8 +10,9 @@ const addDep = () => {
                 type: 'input'
             }
         ])
-        .then(function(response) {
+        .then(function() {
             console.log('department added');
+            makeSelection.makeSelection();
         })
 }
 

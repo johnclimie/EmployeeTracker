@@ -14,6 +14,7 @@ const viewRoles = require('./prompts/viewRoles');
 
 // Asks user what they would like to do
 function makeSelection() {
+
     inquirer
         .prompt([
             {
@@ -39,19 +40,19 @@ function makeSelection() {
                     updateEmp.updateEmp();
                     break;
                 case 'View Departments':
-                    console.log(`Test ${viewDep.getName()}`)
+                    viewDep.getName();
                     break;
                 case 'View Employees':
-                    console.log(`Test ${viewEmp.getName()}`)
+                    viewEmp.getName();
                     break;
                 case 'View Roles':
-                    console.log(`Test ${viewRoles.getName()}`)
+                    viewRoles.getName();
                     break;
             }
-            // Function calls itself after each selection is made
         })
-};
-
+    
+}
 
 makeSelection();
 
+exports.makeSelection = makeSelection;

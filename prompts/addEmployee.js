@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const makeSelection = require('../index');
 
 const addEmp = () => {
     inquirer
@@ -26,6 +27,7 @@ const addEmp = () => {
         ])
         .then(function() {
             console.log('employee added');
+            makeSelection.makeSelection();
         })
 }
 

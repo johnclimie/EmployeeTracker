@@ -1,4 +1,5 @@
 const inquirer = require("inquirer")
+const makeSelection = require('../index');
 
 const updateEmp = () => {
     inquirer
@@ -16,6 +17,7 @@ const updateEmp = () => {
         ])
         .then(function () {
             console.log('employee updated');
+            makeSelection.makeSelection();
         });
 }
 

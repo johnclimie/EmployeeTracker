@@ -1,5 +1,8 @@
+const makeSelection = require('../index');
+
 const getName = () => {
-    return 'view employees';
+    console.log('view employees');
+    makeSelection.makeSelection();
 }
 
 
