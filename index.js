@@ -54,4 +54,3 @@ function makeSelection() {
 makeSelection();
 
 exports.makeSelection = makeSelection;
-// exports.connection = connection;

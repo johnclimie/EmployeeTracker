@@ -1,4 +1,6 @@
 const inquirer = require('inquirer');
+
+const db = require('../connection').connection;
 const index = require('../index');
 
 const addEmp = () => {
@@ -16,17 +18,26 @@ const addEmp = () => {
             },
             {
                 name: 'role',
-                message: `Enter the employee's role`,
+                message: `Enter the employee's role id`,
                 type: 'input'
             },
             {
                 name: 'manager',
-                message: `Enter the employee's manager`,
+                message: `Enter the employee's manager id`,
                 type: 'input'
             }
         ])
-        .then(function() {
-            console.log('employee added');
+        .then(function(response) {
+            db.execute(
+                'INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)',
+                [response.fName, response.lName, response.role, response.manager],
+                function(err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                }
+            )
+            console.log('Employee added successfully');
             index.makeSelection();
         })
 }

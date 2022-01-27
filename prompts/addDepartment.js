@@ -1,5 +1,9 @@
 const inquirer = require('inquirer');
+
+const db = require('../connection').connection;
 const index = require('../index');
+
+
 
 
 
@@ -12,8 +16,17 @@ const addDep = () => {
                 type: 'input'
             }
         ])
-        .then(function() {
-            console.log('department added');
+        .then(function(response) {
+            db.execute(
+                'INSERT INTO department (name) VALUES (?)',
+                [response.name],
+                function(err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                }
+            )
+            console.log('Department added successfully');
             index.makeSelection();
         })
 }

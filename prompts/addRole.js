@@ -1,4 +1,6 @@
 const inquirer = require('inquirer');
+
+const db = require('../connection').connection;
 const index = require('../index');
 
 const addRole = () => {
@@ -16,12 +18,21 @@ const addRole = () => {
             },
             {
                 name: 'department',
-                message: `Enter the roles's department`,
+                message: `Enter the roles's department id`,
                 type: 'input'
             }
         ])
-        .then(function() {
-            console.log('role added');
+        .then(function(response) {
+            db.execute(
+                'INSERT INTO role (title, salary, department_id) VALUES (?,?,?)',
+                [response.name, response.salary, response.department],
+                function(err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                }
+            )
+            console.log('Role added successfully');
             index.makeSelection();
         })
 }

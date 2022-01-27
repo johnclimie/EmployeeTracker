@@ -1,4 +1,6 @@
 const inquirer = require("inquirer")
+
+const db = require('../connection').connection;
 const index = require('../index');
 
 const updateEmp = () => {

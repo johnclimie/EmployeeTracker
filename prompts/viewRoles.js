@@ -1,3 +1,4 @@
+const db = require('../connection').connection;
 const index = require('../index');
 
 const getName = () => {
