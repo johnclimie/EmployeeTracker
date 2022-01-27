@@ -51,15 +51,6 @@ function makeSelection() {
         })
 }
 
-
-// // Creates SQL connection
-// const connection = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',
-//     password: 'password',
-//     database: 'empTracker_db'
-// });
-
 makeSelection();
 
 exports.makeSelection = makeSelection;
