@@ -1,8 +1,8 @@
-const makeSelection = require('../index');
+const index = require('../index');
 
 const getName = () => {
     console.log('view employees');
-    makeSelection.makeSelection();
+    index.makeSelection();
 }
 
 

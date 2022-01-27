@@ -1,7 +1,6 @@
 // Required NPM Packages
 const cTable = require('console.table');
 const inquirer = require('inquirer');
-const mysql = require('mysql2');
 
 // Required JS files
 const addDep = require('./prompts/addDepartment');
@@ -50,9 +49,18 @@ function makeSelection() {
                     break;
             }
         })
-    
 }
+
+
+// // Creates SQL connection
+// const connection = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'password',
+//     database: 'empTracker_db'
+// });
 
 makeSelection();
 
 exports.makeSelection = makeSelection;
+// exports.connection = connection;

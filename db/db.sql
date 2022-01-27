@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS empTracker_db;
+
+CREATE DATABASE empTracker_db;

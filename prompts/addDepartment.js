@@ -1,5 +1,7 @@
 const inquirer = require('inquirer');
-const makeSelection = require('../index');
+const index = require('../index');
+
+
 
 const addDep = () => {
     inquirer
@@ -12,7 +14,7 @@ const addDep = () => {
         ])
         .then(function() {
             console.log('department added');
-            makeSelection.makeSelection();
+            index.makeSelection();
         })
 }
 
