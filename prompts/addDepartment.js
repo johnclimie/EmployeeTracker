@@ -3,10 +3,6 @@ const inquirer = require('inquirer');
 const db = require('../connection').connection;
 const index = require('../index');
 
-
-
-
-
 const addDep = () => {
     inquirer
         .prompt([
@@ -30,6 +26,5 @@ const addDep = () => {
             index.makeSelection();
         })
 }
-
 
 exports.addDep = addDep;

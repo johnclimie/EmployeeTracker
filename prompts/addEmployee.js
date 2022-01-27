@@ -42,5 +42,4 @@ const addEmp = () => {
         })
 }
 
-
 exports.addEmp = addEmp;

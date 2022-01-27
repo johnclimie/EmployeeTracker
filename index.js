@@ -1,5 +1,4 @@
-// Required NPM Packages
-const cTable = require('console.table');
+// Required inquirer package
 const inquirer = require('inquirer');
 
 // Required JS files

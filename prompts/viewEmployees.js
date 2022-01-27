@@ -1,10 +1,20 @@
+const cTable = require('console.table');
 const db = require('../connection').connection;
+
 const index = require('../index');
 
 const getName = () => {
-    console.log('view employees');
-    index.makeSelection();
+    db.query(
+        'SELECT * FROM employee',
+        function(err, results) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.table(results);
+                index.makeSelection();
+            }
+        }
+    )
 }
-
 
 exports.getName = getName;
