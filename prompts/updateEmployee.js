@@ -37,26 +37,36 @@ const updateEmp = () => {
                                  },
                                  {
                                      name: 'newRole',
-                                     message: `Enter a new role id for this employee`,
+                                     message: `Enter a new role for this employee`,
                                      type: 'input'
                                  }
                              ])
                              .then(function(response) {
-                                 db.query(
-                                     `UPDATE employee
-                                      SET role_id = ${response.newRole}
-                                      WHERE first_name = '${response.fName}' AND last_name = '${response.lName}'`,
-                                    function(err) {
-                                        if (err) {
-                                            console.log(err);
+                                db.query('SELECT * FROM role', function(err, result) {
+                                    var newRole;
+
+                                    for (var i = 0; i < result.length; i++) {
+                                        if (result[i].title === response.newRole) {
+                                            newRole = result[i].id;
                                         }
                                     }
-                                 )
+
+                                    
+                                    db.query(
+                                        `UPDATE employee
+                                         SET role_id = ${newRole}
+                                         WHERE first_name = '${response.fName}' AND last_name = '${response.lName}'`,
+                                       function(err) {
+                                           if (err) {
+                                               console.log(err);
+                                           } else {
+                                            console.log("Update was successful \n")
+                                            index.makeSelection()
+                                           }
+                                       }
+                                    )
+                                })
                              })
-                             .then(() => {
-                                 console.log("Update was successful \n")
-                                 index.makeSelection()
-                             });
                          }
                      }
                 )
