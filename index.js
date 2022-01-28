@@ -25,25 +25,25 @@ function makeSelection() {
         // Depending on what is selected, the user is presented with new output
         .then(function(response) {
             switch (response.selection) {
-                case 'Add a Department':
+                case 'Add a department':
                     addDep.addDep();
                     break;
-                case 'Add an Employee':
+                case 'Add an employee':
                     addEmp.addEmp();
                     break;
-                case 'Add a Role':
+                case 'Add a role':
                     addRole.addRole();
                     break;
-                case 'Update Employee':
+                case 'Update an employee':
                     updateEmp.updateEmp();
                     break;
-                case 'View Departments':
+                case 'View all departments':
                     viewDep.getName();
                     break;
-                case 'View Employees':
+                case 'View all employees':
                     viewEmp.getName();
                     break;
-                case 'View Roles':
+                case 'View all roles':
                     viewRoles.getName();
                     break;
             }
