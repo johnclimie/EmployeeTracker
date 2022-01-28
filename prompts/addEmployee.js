@@ -4,6 +4,7 @@ const db = require('../connection').connection;
 const index = require('../index');
 
 const addEmp = () => {
+
     inquirer
         .prompt([
             {
@@ -18,27 +19,57 @@ const addEmp = () => {
             },
             {
                 name: 'role',
-                message: `Enter the employee's role id`,
+                message: `Enter the employee's role`,
                 type: 'input'
             },
             {
                 name: 'manager',
-                message: `Enter the employee's manager id`,
+                message: `Enter the employee's manager`,
                 type: 'input'
             }
         ])
         .then(function(response) {
-            db.execute(
-                'INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)',
-                [response.fName, response.lName, response.role, response.manager],
-                function(err) {
+
+            db.query('SELECT * FROM role', function (err, result) {
+                if (err) {
+                    throw err;
+                }
+
+                var roleId;
+                for (i = 0; i < result.length; i++) {
+                    if (result[i].title === response.role) {
+                        roleId = result[i].id;
+                    }
+                }
+
+                db.query('SELECT * FROM employee WHERE manager_id = 0', function(err, res) {
                     if (err) {
                         console.log(err);
                     }
-                }
-            )
-            console.log('Employee added successfully');
-            index.makeSelection();
+
+                    var managerId;
+
+                    for (i = 0; i < res.length; i++) {
+                        if (res[i].last_name === response.manager) {
+                            managerId = res[i].id;
+
+                        }
+                    }
+
+                    db.execute(
+                        'INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)',
+                        [response.fName, response.lName, roleId, managerId],
+                        function(err) {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                console.log('Employee added successfully');
+                                index.makeSelection();
+                            }
+                        }
+                    ) 
+                })
+            })
         })
 }
 

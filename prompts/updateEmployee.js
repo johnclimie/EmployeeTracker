@@ -12,8 +12,6 @@ const updateEmp = () => {
             } else {
                 let arrLast = [];
                 results.forEach(person => arrLast.push(`${person.last_name}`));
-                
-
                 db.query(
                     `SELECT first_name
                      FROM employee;`, function(err, results) {
