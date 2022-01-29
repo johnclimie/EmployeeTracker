@@ -42,19 +42,31 @@ const addEmp = () => {
                     }
                 }
 
-                db.query('SELECT * FROM employee WHERE manager_id = 0', function(err, res) {
+                db.query('SELECT * FROM employee WHERE manager_id = 0', function(err, result) {
                     if (err) {
                         console.log(err);
                     }
 
                     var managerId;
 
-                    for (i = 0; i < res.length; i++) {
-                        if (res[i].last_name === response.manager) {
-                            managerId = res[i].id;
 
+                    if (response.manager === "") {
+                        console.log('nothing was entered');
+                        managerId = 0;
+                    } else {
+                        for (i = 0; i < result.length; i++) {
+                            if (result[i].last_name === response.manager) {
+                                managerId = result[i].id;
+                            }
                         }
                     }
+
+                    // for (i = 0; i < result.length; i++) {
+                    //     if (result[i].last_name === response.manager) {
+                    //         managerId = res[i].id;
+
+                    //     }
+                    // }
 
                     db.execute(
                         'INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)',
