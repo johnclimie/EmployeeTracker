@@ -19,31 +19,31 @@ function makeSelection() {
                 name: 'selection', 
                 message: 'What would you like to do?',
                 type: 'list',
-                choices: ['Add a Department', 'Add an Employee', 'Add a Role', 'Update Employee', 'View Departments', 'View Employees', 'View Roles']
+                choices: ['Add a department', 'Add an employee', 'Add a role', 'Update an employee', 'View all departments', 'View all employees', 'View all roles']
             }
         ])
         // Depending on what is selected, the user is presented with new output
         .then(function(response) {
             switch (response.selection) {
-                case 'Add a Department':
+                case 'Add a department':
                     addDep.addDep();
                     break;
-                case 'Add an Employee':
+                case 'Add an employee':
                     addEmp.addEmp();
                     break;
-                case 'Add a Role':
+                case 'Add a role':
                     addRole.addRole();
                     break;
-                case 'Update Employee':
+                case 'Update an employee':
                     updateEmp.updateEmp();
                     break;
-                case 'View Departments':
+                case 'View all departments':
                     viewDep.getName();
                     break;
-                case 'View Employees':
+                case 'View all employees':
                     viewEmp.getName();
                     break;
-                case 'View Roles':
+                case 'View all roles':
                     viewRoles.getName();
                     break;
             }
